@@ -14,15 +14,16 @@ AudioInput input;
 String[] Excuses;
 int Excusecount;
 String FinalExcuse ="";
+
 void setup()
 {
   minim = new Minim(this);
   player = minim.loadFile("Wheel.mp3");
   player.play();
-  size(1000,800);
+  fullScreen();
   Excuses = loadStrings("Excuses.txt");
   Excusecount = Excuses.length;
-  textSize(15);
+  textSize(27);
   int ranNum = int(random(0,Excusecount));
   FinalExcuse = Excuses[ranNum];
 }
@@ -30,11 +31,16 @@ void setup()
 void draw()
 {
   background(0);
+  fill(255);
+  rect(0, 350, width, 80);
+  sickTitle();
+  textSize(27);
+  fill(0);
   if(millis()-time <10500)
   {
     FinalExcuse = Generate();
   }
-  text(FinalExcuse,200,400);
+  text(FinalExcuse,30,400);
 }
 
 void keyPressed() {
@@ -50,4 +56,11 @@ String Generate()
 {
   int ranNum = int(random(0,Excusecount));
   return Excuses[ranNum];
+}
+
+void sickTitle()
+{
+  fill(23, 255, 255);
+  textSize(60);
+  text("Trust these excuses", 400, 100);
 }
